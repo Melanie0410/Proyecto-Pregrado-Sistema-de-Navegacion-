@@ -1,0 +1,33 @@
+﻿Flujo,Origen,Destino,Dato
+F01,Levantamiento del área y puntos de interés,Mapa / representación del entorno,"Levantamiento previo, plano del área y puntos de interés"
+F02,Interfaz del investigador,Selección de destino / interacción,Selección de destino o cancelación
+F03,Selección de destino / interacción,Interfaz del investigador,Confirmación de selección u opción inválida
+F04,Mapa / representación del entorno,Selección de destino / interacción,Catálogo de puntos de interés
+F05,Selección de destino / interacción,Planificación de rutas,Ubicación del destino seleccionado
+F06,Selección de destino / interacción,Mensajes de voz,Nombre del destino
+F07,Mensajes de voz,Salida de audio del computador,Audio del mensaje
+F08,Robot simulado en Gazebo,Sensores / adquisición de datos,Mediciones sensoriales y datos de estado
+F09,Sensores / adquisición de datos,Percepción y obstáculos,Mediciones LiDAR y profundidad
+F10,Sensores / adquisición de datos,Localización,"IMU, odometría y datos sensoriales"
+F11,Mapa / representación del entorno,Localización,Mapa del entorno
+F12,Mapa / representación del entorno,Planificación de rutas,Mapa del entorno
+F13,Localización,Planificación de rutas,Posición y orientación estimadas
+F14,Planificación de rutas,Navegación y respuesta ante obstáculos,Ruta calculada
+F15,Percepción y obstáculos,Navegación y respuesta ante obstáculos,"Presencia, posición y distancia de obstáculos"
+F16,Localización,Navegación y respuesta ante obstáculos,Posición y orientación estimadas
+F17,Navegación y respuesta ante obstáculos,Interfaz de comandos de movimiento,"Comandos de avance, giro y detención"
+F18,Interfaz de comandos de movimiento,Robot simulado en Gazebo,Comandos adaptados al controlador
+F19,Selección de destino / interacción,Supervisión del sistema y detención,Solicitud de inicio o cancelación
+F20,Planificación de rutas,Supervisión del sistema y detención,Resultado de planificación
+F21,Interfaz del investigador,Supervisión del sistema y detención,Solicitudes o intervenciones del investigador
+F22,Percepción y obstáculos,Supervisión del sistema y detención,Disponibilidad de datos de percepción
+F23,Localización,Supervisión del sistema y detención,Estado de localización
+F24,Navegación y respuesta ante obstáculos,Supervisión del sistema y detención,Estado del recorrido y eventos
+F25,Supervisión del sistema y detención,Navegación y respuesta ante obstáculos,"Inicio, continuación o interrupción"
+F26,Supervisión del sistema y detención,Interfaz de comandos de movimiento,Detención prioritaria o habilitación
+F27,Supervisión del sistema y detención,Mensajes de voz,"Eventos de inicio, detención con causa, continuación y llegada"
+F28,Supervisión del sistema y detención,Registro de pruebas,"Eventos, causas y marcas de tiempo"
+F29,Percepción y obstáculos,Registro de pruebas,Eventos de obstáculos
+F30,Navegación y respuesta ante obstáculos,Registro de pruebas,Respuesta ante obstáculos
+F31,Ficha del investigador,Registro de pruebas,Identificación de prueba e intervenciones
+F32,Registro de pruebas,Registro de cada prueba,Registro de eventos y resultados

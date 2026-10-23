@@ -1,0 +1,315 @@
+{
+  "modules": {
+    "sensores": {
+      "name": "Sensores / adquisición de datos",
+      "responsibility": "Gestionar la adquisición de datos provenientes de los sensores y del estado del robot, proporcionando la información necesaria para los procesos de percepción y localización.",
+      "inputs": "Mediciones del LiDAR 3D, cámara de profundidad, IMU y datos de odometría disponibles en simulación.",
+      "outputs": "Mediciones sensoriales entregadas a percepción y localización, según las fuentes seleccionadas, con sus referencias temporales y espaciales.",
+      "example": "Durante el desplazamiento, el LiDAR proporciona mediciones de distancia a los objetos cercanos y la IMU entrega información sobre la orientación y el movimiento del robot. Estos datos se ponen a disposición de los demás módulos."
+    },
+    "percepcion": {
+      "name": "Percepción y obstáculos",
+      "responsibility": "Procesar los datos sensoriales para detectar obstáculos estáticos y dinámicos presentes en el área de navegación",
+      "inputs": "Datos del LiDAR 3D y cámara de profundidad provenientes del módulo de adquisición.",
+      "outputs": "Información de presencia, posición y distancia de obstáculos enviada a navegación; disponibilidad de los datos comunicada a supervisión y eventos necesarios entregados al registro de pruebas.",
+      "example": "Si una persona cruza frente al robot, el módulo procesa los datos sensoriales e identifica la presencia y ubicación del obstáculo para informar al sistema de navegación"
+    },
+    "mapa": {
+      "name": "Mapa / representación del entorno",
+      "responsibility": "Representar la distribución espacial del área seleccionada, incluyendo corredores, límites de navegación y puntos de interés previamente definidos.",
+      "inputs": "Levantamiento previo del área de trabajo, plano del espacio y ubicación de los puntos de interés. En este esquema no se construye automáticamente a partir del LiDAR.",
+      "outputs": "Mapa con espacios transitables y ocupados para localización y planificación; catálogo de puntos de interés para selección de destino.",
+      "example": "El mapa se prepara previamente a partir del levantamiento del área seleccionada. Representa corredores, laboratorios, cafeterías y accesos, permitiendo identificar las zonas transitables y los puntos de interés disponibles."
+    },
+    "localizacion": {
+      "name": "Localización",
+      "responsibility": "Estimar la posición y orientación del robot dentro del mapa para proporcionar una referencia espacial durante los recorridos.",
+      "inputs": "Mapa del entorno, información sensorial y datos de odometría disponibles.",
+      "outputs": "Posición y orientación estimadas respecto al mapa para planificación y navegación; estado de localización para supervisión.",
+      "example": "Durante el recorrido, el módulo estima en qué punto del corredor se encuentra el robot y hacia dónde está orientado, para que navegación ajuste su desplazamiento."
+    },
+    "planificacion": {
+      "name": "Planificación de rutas",
+      "responsibility": "Calcular una ruta desde la posición estimada del robot hasta el destino seleccionado, utilizando los espacios transitables representados en el mapa.",
+      "inputs": "Mapa del entorno, recibido del módulo de mapa; posición y orientación estimadas del robot, recibidas de localización; destino validado, proveniente del módulo de selección de destino.",
+      "outputs": "Ruta calculada enviada a navegación; resultado de la planificación enviado a supervisión, indicando si se encontró una ruta o no fue posible obtenerla.",
+      "example": "El investigador selecciona el laboratorio de metrología. El módulo recibe la posición de ese destino, la posición estimada del robot y el mapa. Con esos datos calcula una ruta por el corredor y la entrega a navegación. Si el mapa no permite conectar ambos puntos mediante un espacio transitable, informa que no se encontró una ruta."
+    },
+    "navegacion": {
+      "name": "Navegación y respuesta ante obstáculos",
+      "responsibility": "Seguir la ruta calculada mediante la generación de comandos de movimiento, ajustando el desplazamiento o deteniéndose ante obstáculos. Identificar la llegada al destino e informar cuando no sea posible continuar.",
+      "inputs": "Ruta recibida de planificación; posición y orientación estimadas recibidas de localización; información de obstáculos recibida de percepción; indicaciones de inicio, continuación o interrupción del recorrido recibidas de supervisión.",
+      "outputs": "Comandos de avance, giro y detención enviados a la interfaz de movimiento; estado del recorrido y eventos de detención, continuación, llegada o imposibilidad de avanzar enviados a supervisión. Información de respuesta ante obstáculos enviada al registro de pruebas.",
+      "example": "Durante el recorrido al laboratorio de metrología aparece una silla en el corredor. El módulo utiliza la información de percepción para ajustar el movimiento si hay espacio libre suficiente. Si el paso queda bloqueado, detiene el desplazamiento e informa a supervisión para gestionar la continuación o interrupción del recorrido."
+    },
+    "destino": {
+      "name": "Selección de destino / interacción",
+      "responsibility": "Permitir al investigador seleccionar un destino entre los puntos de interés definidos y solicitar la cancelación del recorrido. Asociar el destino seleccionado con su ubicación en el mapa.",
+      "inputs": "Selección o solicitud de cancelación introducida por el investigador mediante la interfaz; listado de puntos de interés con sus identificadores y ubicaciones, recibido del módulo de mapa.",
+      "outputs": "Ubicación del destino seleccionado, enviada a planificación; solicitud de inicio o cancelación del recorrido, enviada a supervisión; confirmación de la selección o aviso de opción inválida, mostrado en la interfaz. Nombre del destino enviado a mensajes de voz.",
+      "example": "El investigador selecciona mediante la interfaz “Laboratorio de metrología”. El módulo identifica su ubicación en el mapa, la envía a planificación y comunica a supervisión la solicitud de iniciar el recorrido. Si el investigador cancela, envía esa solicitud a supervisión para interrumpirlo."
+    },
+    "voz": {
+      "name": "Mensajes de voz",
+      "responsibility": "Emitir mensajes audibles para comunicar el inicio, la detención, la continuación y la llegada al destino durante el recorrido.",
+      "inputs": "Eventos del recorrido recibidos de supervisión: inicio, detención con su causa, continuación y llegada; nombre del destino recibido de selección de destino.",
+      "outputs": "Audio correspondiente al evento, enviado al dispositivo de salida de audio del computador durante las pruebas en simulación",
+      "example": "Al comenzar el recorrido, reproduce “Iniciando recorrido hacia el laboratorio de metrología”. Si el robot se detiene por un obstáculo, comunica “Recorrido detenido por un obstáculo”. Al llegar, reproduce “Hemos llegado al laboratorio de metrología”."
+    },
+    "movimiento": {
+      "name": "Interfaz de comandos de movimiento",
+      "responsibility": "Adaptar y enviar los comandos de navegación al mecanismo que mueve el robot en simulación. Dar prioridad a las órdenes de detención recibidas de supervisión.",
+      "inputs": "Comandos de avance, giro y detención (representables como velocidades lineal y angular y señal de parada) recibidos de navegación; orden de detención recibida de supervisión. Indicación de habilitación recibida de supervisión.",
+      "outputs": "Comandos adaptados enviados al controlador del robot simulado. Ante una detención de supervisión, envía el comando de parada y bloquea nuevos comandos de desplazamiento hasta recibir la habilitación.",
+      "example": "Navegación solicita avanzar y girar para seguir el corredor. La interfaz adapta las velocidades al controlador simulado. Si supervisión indica detenerse, envía el comando de parada y mantiene bloqueado el desplazamiento aunque sigan llegando comandos de navegación."
+    },
+    "supervision": {
+      "name": "Supervisión del sistema y detención",
+      "responsibility": "Comprobar las condiciones necesarias para iniciar el recorrido, vigilar su ejecución y coordinar su interrupción ante fallos o cancelaciones. Permitir el reinicio después de verificar que se hayan restablecido las condiciones de funcionamiento.",
+      "inputs": "Solicitudes de inicio y cancelación recibidas de selección de destino; solicitudes o intervenciones del investigador recibidas desde la interfaz; resultado de planificación; estado de localización y disponibilidad de datos de percepción; estado del recorrido recibido de navegación.",
+      "outputs": "Indicaciones de inicio, continuación o interrupción enviadas a navegación; indicación de detención o habilitación del movimiento enviada a la interfaz de movimiento; eventos y causas enviados a mensajes de voz y al registro de pruebas.",
+      "example": "Durante el recorrido se pierde la localización. Supervisión solicita interrumpir la navegación, indica detener el movimiento y comunica el evento a voz y al registro. El recorrido solo podrá reiniciarse después de recuperar la localización y verificar las condiciones del sistema."
+    },
+    "registro": {
+      "name": "Registro de pruebas",
+      "responsibility": "Guardar los eventos, tiempos y resultados de cada prueba, junto con la información registrada por el investigador, para calcular posteriormente los indicadores de desempeño.",
+      "inputs": "Identificación de la ruta y condición de prueba; eventos de inicio, detención, continuación y finalización recibidos de supervisión, con sus tiempos; información de obstáculos y respuesta recibida de percepción y navegación; intervenciones registradas por el investigador.",
+      "outputs": "Registro de cada prueba con los datos necesarios para determinar su duración, resultado, intervenciones externas y respuesta ante obstáculos.",
+      "example": "En una prueba con un obstáculo estático, guarda la duración, si se alcanzó el destino, las detenciones y las intervenciones del investigador. Estos resultados permiten comparar las repeticiones de esa ruta."
+    }
+  },
+  "external_elements": {
+    "config": "Levantamiento del área y puntos de interés",
+    "investigador": "Interfaz del investigador",
+    "audio": "Salida de audio del computador",
+    "ficha": "Ficha del investigador",
+    "robot": "Robot simulado en Gazebo",
+    "informe": "Registro de cada prueba"
+  },
+  "flows": [
+    {
+      "id": "F01",
+      "a": "config",
+      "b": "mapa",
+      "label": "Levantamiento previo, plano del área y puntos de interés",
+      "kind": "ext"
+    },
+    {
+      "id": "F02",
+      "a": "investigador",
+      "b": "destino",
+      "label": "Selección de destino o cancelación",
+      "kind": "ext"
+    },
+    {
+      "id": "F03",
+      "a": "destino",
+      "b": "investigador",
+      "label": "Confirmación de selección u opción inválida",
+      "kind": "interaction"
+    },
+    {
+      "id": "F04",
+      "a": "mapa",
+      "b": "destino",
+      "label": "Catálogo de puntos de interés",
+      "kind": "data"
+    },
+    {
+      "id": "F05",
+      "a": "destino",
+      "b": "planificacion",
+      "label": "Ubicación del destino seleccionado",
+      "kind": "interaction"
+    },
+    {
+      "id": "F06",
+      "a": "destino",
+      "b": "voz",
+      "label": "Nombre del destino",
+      "kind": "interaction"
+    },
+    {
+      "id": "F07",
+      "a": "voz",
+      "b": "audio",
+      "label": "Audio del mensaje",
+      "kind": "interaction"
+    },
+    {
+      "id": "F08",
+      "a": "robot",
+      "b": "sensores",
+      "label": "Mediciones sensoriales y datos de estado",
+      "kind": "ext"
+    },
+    {
+      "id": "F09",
+      "a": "sensores",
+      "b": "percepcion",
+      "label": "Mediciones LiDAR y profundidad",
+      "kind": "data"
+    },
+    {
+      "id": "F10",
+      "a": "sensores",
+      "b": "localizacion",
+      "label": "IMU, odometría y datos sensoriales",
+      "kind": "data"
+    },
+    {
+      "id": "F11",
+      "a": "mapa",
+      "b": "localizacion",
+      "label": "Mapa del entorno",
+      "kind": "data"
+    },
+    {
+      "id": "F12",
+      "a": "mapa",
+      "b": "planificacion",
+      "label": "Mapa del entorno",
+      "kind": "data"
+    },
+    {
+      "id": "F13",
+      "a": "localizacion",
+      "b": "planificacion",
+      "label": "Posición y orientación estimadas",
+      "kind": "data"
+    },
+    {
+      "id": "F14",
+      "a": "planificacion",
+      "b": "navegacion",
+      "label": "Ruta calculada",
+      "kind": "decision"
+    },
+    {
+      "id": "F15",
+      "a": "percepcion",
+      "b": "navegacion",
+      "label": "Presencia, posición y distancia de obstáculos",
+      "kind": "data"
+    },
+    {
+      "id": "F16",
+      "a": "localizacion",
+      "b": "navegacion",
+      "label": "Posición y orientación estimadas",
+      "kind": "data"
+    },
+    {
+      "id": "F17",
+      "a": "navegacion",
+      "b": "movimiento",
+      "label": "Comandos de avance, giro y detención",
+      "kind": "decision"
+    },
+    {
+      "id": "F18",
+      "a": "movimiento",
+      "b": "robot",
+      "label": "Comandos adaptados al controlador",
+      "kind": "motion"
+    },
+    {
+      "id": "F19",
+      "a": "destino",
+      "b": "supervision",
+      "label": "Solicitud de inicio o cancelación",
+      "kind": "interaction"
+    },
+    {
+      "id": "F20",
+      "a": "planificacion",
+      "b": "supervision",
+      "label": "Resultado de planificación",
+      "kind": "decision"
+    },
+    {
+      "id": "F21",
+      "a": "investigador",
+      "b": "supervision",
+      "label": "Solicitudes o intervenciones del investigador",
+      "kind": "interaction"
+    },
+    {
+      "id": "F22",
+      "a": "percepcion",
+      "b": "supervision",
+      "label": "Disponibilidad de datos de percepción",
+      "kind": "data"
+    },
+    {
+      "id": "F23",
+      "a": "localizacion",
+      "b": "supervision",
+      "label": "Estado de localización",
+      "kind": "data"
+    },
+    {
+      "id": "F24",
+      "a": "navegacion",
+      "b": "supervision",
+      "label": "Estado del recorrido y eventos",
+      "kind": "decision"
+    },
+    {
+      "id": "F25",
+      "a": "supervision",
+      "b": "navegacion",
+      "label": "Inicio, continuación o interrupción",
+      "kind": "supervision"
+    },
+    {
+      "id": "F26",
+      "a": "supervision",
+      "b": "movimiento",
+      "label": "Detención prioritaria o habilitación",
+      "kind": "supervision"
+    },
+    {
+      "id": "F27",
+      "a": "supervision",
+      "b": "voz",
+      "label": "Eventos de inicio, detención con causa, continuación y llegada",
+      "kind": "supervision"
+    },
+    {
+      "id": "F28",
+      "a": "supervision",
+      "b": "registro",
+      "label": "Eventos, causas y marcas de tiempo",
+      "kind": "supervision"
+    },
+    {
+      "id": "F29",
+      "a": "percepcion",
+      "b": "registro",
+      "label": "Eventos de obstáculos",
+      "kind": "data"
+    },
+    {
+      "id": "F30",
+      "a": "navegacion",
+      "b": "registro",
+      "label": "Respuesta ante obstáculos",
+      "kind": "decision"
+    },
+    {
+      "id": "F31",
+      "a": "ficha",
+      "b": "registro",
+      "label": "Identificación de prueba e intervenciones",
+      "kind": "ext"
+    },
+    {
+      "id": "F32",
+      "a": "registro",
+      "b": "informe",
+      "label": "Registro de eventos y resultados",
+      "kind": "record"
+    }
+  ]
+}
