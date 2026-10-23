@@ -6,9 +6,9 @@ Proyecto de investigación sobre una arquitectura funcional de navegación asist
 
 La arquitectura está organizada en módulos y permite examinar sus entradas, salidas y relaciones funcionales. La versión interactiva incluye vistas individuales de los módulos, escenarios de funcionamiento, inventario de flujos y matriz de módulos.
 
-[**Explorar la arquitectura funcional interactiva**](https://melanie0410.github.io/Proyecto-de-grado/)
+[**Explorar la arquitectura funcional interactiva**]([https://melanie0410.github.io/Proyecto-de-grado/](https://melanie0410.github.io/Proyecto-Pregrado-Sistema-de-Navegacion-/))
 
-[![Vista general de la arquitectura funcional](docs/Arquitectura_G1.png)]([https://melanie0410.github.io/Proyecto-de-grado/](https://melanie0410.github.io/Proyecto-Pregrado-Sistema-de-Navegacion-/))
+[![Vista general de la arquitectura funcional](docs/Arquitectura_G1.png)]([[https://melanie0410.github.io/Proyecto-de-grado/](https://melanie0410.github.io/Proyecto-Pregrado-Sistema-de-Navegacion-/)](https://melanie0410.github.io/Proyecto-Pregrado-Sistema-de-Navegacion-/))
 
 > **Nota:** el enlace interactivo funcionará una vez habilitado GitHub Pages con la rama `main` y la carpeta `/docs`. El acceso a Pages desde repositorios privados depende del plan y la configuración de GitHub; el sitio publicado puede ser público.
 
