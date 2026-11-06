@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.8">
+  <world name="pasillo_preliminar">
+    <physics name="fisica" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+    </physics>
+    <plugin filename="libignition-gazebo-physics-system.so" name="ignition::gazebo::systems::Physics" />
+    <plugin filename="libignition-gazebo-user-commands-system.so" name="ignition::gazebo::systems::UserCommands" />
+    <plugin filename="libignition-gazebo-scene-broadcaster-system.so" name="ignition::gazebo::systems::SceneBroadcaster" />
+    <light name="sol" type="directional">
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <direction>-0.5 0.1 -0.9</direction>
+      <cast_shadows>true</cast_shadows>
+    </light>
+    <model name="suelo">
+      <static>true</static>
+      <pose>0 0 -0.1 0 0 0</pose>
+      <link name="estructura">
+        <collision name="colision">
+          <geometry>
+            <box>
+              <size>30 10 0.2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>30 10 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.75 1</ambient>
+            <diffuse>0.8 0.8 0.75 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="pared_izquierda">
+      <static>true</static>
+      <pose>0 1.4 1.25 0 0 0</pose>
+      <link name="estructura">
+        <collision name="colision">
+          <geometry>
+            <box>
+              <size>25 0.15 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>25 0.15 2.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.75 1</ambient>
+            <diffuse>0.8 0.8 0.75 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="pared_derecha">
+      <static>true</static>
+      <pose>0 -1.4 1.25 0 0 0</pose>
+      <link name="estructura">
+        <collision name="colision">
+          <geometry>
+            <box>
+              <size>25 0.15 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>25 0.15 2.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.75 1</ambient>
+            <diffuse>0.8 0.8 0.75 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <plugin filename="libignition-gazebo-sensors-system.so" name="ignition::gazebo::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <model name="model_with_lidar">
+      <static>true</static>
+      <pose>0 0 1 0 0 0</pose>
+      <link name="link">
+        <sensor name="gpu_lidar" type="gpu_lidar">
+          <topic>lidar</topic>
+          <update_rate>10</update_rate>
+          <lidar>
+            <scan>
+              <horizontal>
+                <samples>640</samples>
+                <resolution>1</resolution>
+                <min_angle>-1.396263</min_angle>
+                <max_angle>1.396263</max_angle>
+              </horizontal>
+              <vertical>
+                <samples>16</samples>
+                <resolution>1</resolution>
+                <min_angle>-0.261799</min_angle>
+                <max_angle>0.261799</max_angle>
+              </vertical>
+            </scan>
+            <range>
+              <min>0.08</min>
+              <max>10.0</max>
+              <resolution>0.01</resolution>
+            </range>
+          </lidar>
+          <alwaysOn>1</alwaysOn>
+          <visualize>true</visualize>
+        </sensor>
+      </link>
+    </model>
+  </world>
+</sdf>
