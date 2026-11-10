@@ -1,0 +1,292 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.9">
+  <world name="tramo_superior">
+    <light name="sol" type="directional">
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+    <plugin filename="ignition-gazebo-physics-system" name="ignition::gazebo::systems::Physics" />
+    <plugin filename="ignition-gazebo-user-commands-system" name="ignition::gazebo::systems::UserCommands" />
+    <plugin filename="ignition-gazebo-scene-broadcaster-system" name="ignition::gazebo::systems::SceneBroadcaster" />
+    <plugin filename="ignition-gazebo-sensors-system" name="ignition::gazebo::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <model name="suelo">
+      <static>true</static>
+      <pose>0 0 0 0 0 0</pose>
+
+      <link name="link">
+        <collision name="principal_collision">
+          <pose>1.195 2.105 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>2.95 4.77 0.10</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="principal_visual">
+          <pose>1.195 2.105 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>2.95 4.77 0.10</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.55 0.52 0.47 1</ambient>
+            <diffuse>0.55 0.52 0.47 1</diffuse>
+          </material>
+        </visual>
+
+        <collision name="esquina_collision">
+          <pose>-0.64 4.35 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.72 0.28 0.10</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="esquina_visual">
+          <pose>-0.64 4.35 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.72 0.28 0.10</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.55 0.52 0.47 1</ambient>
+            <diffuse>0.55 0.52 0.47 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>    
+    <model name="pared_izquierda">
+      <static>true</static>
+      <pose>-0.14 2.245 1.6 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.28 4.49 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.28 4.49 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="pared_extremo_superior">
+      <static>true</static>
+      <pose>1.195 -0.14 1.6 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.95 0.28 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.95 0.28 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="tramo_derecho_inicial">
+      <static>true</static>
+      <pose>2.530000 0.725000 1.600000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.28 1.45 3.2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.28 1.45 3.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="columna_derecha_1">
+      <static>true</static>
+      <pose>2.530000 2.540000 1.600000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.28 0.28 3.2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.28 0.28 3.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="columna_derecha_2">
+      <static>true</static>
+      <pose>2.530000 3.850000 1.600000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.28 0.28 3.2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.28 0.28 3.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="murete_derecho_1">
+      <static>true</static>
+      <pose>2.530000 1.925000 0.615000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.28 0.95 1.23</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.28 0.95 1.23</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.60 0.30 0.20 1</ambient>
+            <diffuse>0.60 0.30 0.20 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="murete_derecho_2">
+      <static>true</static>
+      <pose>2.530000 3.195000 0.615000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.28 1.03 1.23</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.28 1.03 1.23</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.60 0.30 0.20 1</ambient>
+            <diffuse>0.60 0.30 0.20 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="pared_ensanchamiento">
+      <static>true</static>
+      <pose>-0.64 4.35 1.60 0 0 0</pose>
+
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.72 0.28 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.72 0.28 3.20</size>
+            </box>
+          </geometry>
+
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>    
+    <gui fullscreen="0">
+      <plugin filename="MinimalScene" name="3D View">
+        <gz-gui>
+          <title>3D View</title>
+          <property type="bool" key="showTitleBar">false</property>
+          <property type="string" key="state">docked</property>
+        </gz-gui>
+        <engine>ogre2</engine>
+        <scene>scene</scene>
+        <ambient_light>0.4 0.4 0.4</ambient_light>
+        <background_color>0.8 0.8 0.8</background_color>
+        <camera_pose>6 -5 6 0 0.55 2.18</camera_pose>
+        <camera_clip>
+          <near>0.05</near>
+          <far>100</far>
+        </camera_clip>
+      </plugin>
+      <plugin filename="GzSceneManager" name="Scene Manager" />
+      <plugin filename="InteractiveViewControl" name="View control" />
+      <plugin filename="EntityTree" name="Entity tree" />
+      <plugin filename="ComponentInspector" name="Component inspector" />
+      <plugin filename="SelectEntities" name="Select entities">
+        <gz-gui>
+          <property type="string" key="state">floating</property>
+          <property type="bool" key="showTitleBar">false</property>
+          <property type="double" key="width">5</property>
+          <property type="double" key="height">5</property>
+        </gz-gui>
+      </plugin>
+    </gui>
+  </world>
+</sdf>
