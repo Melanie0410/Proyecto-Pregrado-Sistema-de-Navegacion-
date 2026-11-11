@@ -1,23 +1,74 @@
 <?xml version='1.0' encoding='utf-8'?>
 <sdf version="1.9">
+  <!--
+  ESCENARIO MEDIDO - SEMANA 15 - G1 EDU
+
+  Buscar con Ctrl+F:
+    SECCION 01: sistemas
+    SECCION 02: iluminacion
+    SECCION 03: suelo
+    SECCION 04: paredes iniciales
+    SECCION 05: ensanchamiento y puertas
+    SECCION 06: retorno y pared larga
+    SECCION 07: columnas y muretes
+    SECCION 08: interfaz y camara
+
+  UNIDADES:
+    Metros y radianes.
+    size = X Y Z
+    pose = X Y Z giro_X giro_Y giro_Z
+
+  REFERENCIAS:
+    El pasillo continua hacia +Y.
+    La superficie del piso esta en Z=0.
+    La pared inicial tiene su cara interior en X=0.
+    El lateral derecho tiene su cara interior en X=2.39.
+
+  RECORRIDO:
+    Tramo inicial:      Y=0.00 a 4.49
+    Seccion puertas:    Y=4.49 a 9.25
+    Retorno:            Y=9.25 a 9.53
+    Nueva pared larga:  Y=9.53 a 16.98
+
+    Retorno + pared larga = 0.28 + 7.45 = 7.73 m.
+
+  PROVISIONALES:
+    Altura de puertas: 2.00 m.
+    Espesor de puertas: 0.04 m.
+    Espesor del piso: 0.10 m.
+
+  El escenario sigue en construccion.
+  El lateral de columnas conserva solamente las piezas ya creadas.
+  -->
   <world name="tramo_superior">
-    <light name="sol" type="directional">
-      <pose>0 0 10 0 0 0</pose>
-      <diffuse>0.8 0.8 0.8 1</diffuse>
-      <specular>0.2 0.2 0.2 1</specular>
-      <direction>-0.5 0.1 -0.9</direction>
-    </light>
+    <!-- =====================================================
+         SECCION 01 - SISTEMAS DE SIMULACION
+         ===================================================== -->
     <plugin filename="ignition-gazebo-physics-system" name="ignition::gazebo::systems::Physics" />
     <plugin filename="ignition-gazebo-user-commands-system" name="ignition::gazebo::systems::UserCommands" />
     <plugin filename="ignition-gazebo-scene-broadcaster-system" name="ignition::gazebo::systems::SceneBroadcaster" />
     <plugin filename="ignition-gazebo-sensors-system" name="ignition::gazebo::systems::Sensors">
       <render_engine>ogre2</render_engine>
     </plugin>
+    <!-- =====================================================
+         SECCION 02 - ILUMINACION
+         ===================================================== -->
+    <light name="sol" type="directional">
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+    <!-- =====================================================
+         SECCION 03 - SUELO
+         Un solo modelo con varias cajas.
+         Todas las superficies superiores quedan en Z=0.
+         ===================================================== -->
     <model name="suelo">
       <static>true</static>
       <pose>0 0 0 0 0 0</pose>
-
       <link name="link">
+        <!-- Piso inicial: incluye la base de la pared del fondo. -->
         <collision name="principal_collision">
           <pose>1.195 2.105 -0.05 0 0 0</pose>
           <geometry>
@@ -26,7 +77,6 @@
             </box>
           </geometry>
         </collision>
-
         <visual name="principal_visual">
           <pose>1.195 2.105 -0.05 0 0 0</pose>
           <geometry>
@@ -39,7 +89,7 @@
             <diffuse>0.55 0.52 0.47 1</diffuse>
           </material>
         </visual>
-
+        <!-- Base del primer ensanchamiento. -->
         <collision name="esquina_collision">
           <pose>-0.64 4.35 -0.05 0 0 0</pose>
           <geometry>
@@ -48,7 +98,6 @@
             </box>
           </geometry>
         </collision>
-
         <visual name="esquina_visual">
           <pose>-0.64 4.35 -0.05 0 0 0</pose>
           <geometry>
@@ -61,35 +110,100 @@
             <diffuse>0.55 0.52 0.47 1</diffuse>
           </material>
         </visual>
-      </link>
-    </model>    
-    <model name="pared_izquierda">
-      <static>true</static>
-      <pose>-0.14 2.245 1.6 0 0 0</pose>
-      <link name="link">
-        <collision name="collision">
+        <!-- Base de la union exterior de la primera esquina. -->
+        <collision name="union_exterior_collision">
+          <pose>-1.14 4.35 -0.05 0 0 0</pose>
           <geometry>
             <box>
-              <size>0.28 4.49 3.20</size>
+              <size>0.28 0.28 0.10</size>
             </box>
           </geometry>
         </collision>
-        <visual name="visual">
+        <visual name="union_exterior_visual">
+          <pose>-1.14 4.35 -0.05 0 0 0</pose>
           <geometry>
             <box>
-              <size>0.28 4.49 3.20</size>
+              <size>0.28 0.28 0.10</size>
             </box>
           </geometry>
           <material>
-            <ambient>0.80 0.78 0.72 1</ambient>
-            <diffuse>0.80 0.78 0.72 1</diffuse>
+            <ambient>0.55 0.52 0.47 1</ambient>
+            <diffuse>0.55 0.52 0.47 1</diffuse>
+          </material>
+        </visual>
+        <!-- Piso de la seccion con puertas: Y=4.49 a 9.25. -->
+        <collision name="seccion_puertas_collision">
+          <pose>0.695 6.87 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>3.95 4.76 0.10</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="seccion_puertas_visual">
+          <pose>0.695 6.87 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>3.95 4.76 0.10</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.55 0.52 0.47 1</ambient>
+            <diffuse>0.55 0.52 0.47 1</diffuse>
+          </material>
+        </visual>
+        <!-- Piso del retorno y paso contiguo: Y=9.25 a 9.53. -->
+        <collision name="retorno_collision">
+          <pose>0.695 9.39 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>3.95 0.28 0.10</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="retorno_visual">
+          <pose>0.695 9.39 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>3.95 0.28 0.10</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.55 0.52 0.47 1</ambient>
+            <diffuse>0.55 0.52 0.47 1</diffuse>
+          </material>
+        </visual>
+        <!-- Piso del tramo largo: Y=9.53 a 16.98. -->
+        <collision name="tramo_largo_collision">
+          <pose>1.17 13.255 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>3.00 7.45 0.10</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="tramo_largo_visual">
+          <pose>1.17 13.255 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>3.00 7.45 0.10</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.55 0.52 0.47 1</ambient>
+            <diffuse>0.55 0.52 0.47 1</diffuse>
           </material>
         </visual>
       </link>
     </model>
+    <!-- =====================================================
+         SECCION 04 - PAREDES DEL TRAMO INICIAL
+         Longitud interior: 4.49 m.
+         Ancho interior: 2.39 m.
+         ===================================================== -->
     <model name="pared_extremo_superior">
       <static>true</static>
-      <pose>1.195 -0.14 1.6 0 0 0</pose>
+      <pose>1.195 -0.14 1.60 0 0 0</pose>
       <link name="link">
         <collision name="collision">
           <geometry>
@@ -111,69 +225,309 @@
         </visual>
       </link>
     </model>
+    <model name="pared_izquierda">
+      <static>true</static>
+      <pose>-0.14 2.245 1.60 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.28 4.49 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.28 4.49 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <!-- =====================================================
+         SECCION 05 - ENSANCHAMIENTO Y DOS PUERTAS
+
+         Secuencia longitudinal:
+         pared 0.25 + puerta 1.00 + pared 2.26
+         + puerta 1.00 + pared 0.25 = 4.76 m.
+         ===================================================== -->
+    <model name="pared_ensanchamiento">
+      <static>true</static>
+      <pose>-0.64 4.35 1.60 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.72 0.28 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.72 0.28 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="seccion_puertas">
+      <static>true</static>
+      <link name="link">
+        <!-- Union exterior con el primer ensanchamiento. -->
+        <collision name="union_esquina_collision">
+          <pose>-1.14 4.35 1.60 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.28 0.28 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="union_esquina_visual">
+          <pose>-1.14 4.35 1.60 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.28 0.28 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+        <!-- Pared inicial: Y=4.49 a 4.74. -->
+        <collision name="pared_inicial_collision">
+          <pose>-1.14 4.615 1.60 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.28 0.25 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pared_inicial_visual">
+          <pose>-1.14 4.615 1.60 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.28 0.25 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+        <!-- Puerta 1 cerrada: Y=4.74 a 5.74. -->
+        <collision name="puerta_1_collision">
+          <pose>-1.02 5.24 1.00 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.04 1.00 2.00</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="puerta_1_visual">
+          <pose>-1.02 5.24 1.00 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.04 1.00 2.00</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.35 0.45 0.55 1</ambient>
+            <diffuse>0.35 0.45 0.55 1</diffuse>
+          </material>
+        </visual>
+        <!-- Pared sobre puerta 1: Z=2.00 a 3.20. -->
+        <collision name="sobre_puerta_1_collision">
+          <pose>-1.14 5.24 2.60 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.28 1.00 1.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="sobre_puerta_1_visual">
+          <pose>-1.14 5.24 2.60 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.28 1.00 1.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+        <!-- Pared intermedia: Y=5.74 a 8.00. -->
+        <collision name="pared_intermedia_collision">
+          <pose>-1.14 6.87 1.60 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.28 2.26 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pared_intermedia_visual">
+          <pose>-1.14 6.87 1.60 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.28 2.26 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+        <!-- Puerta 2 cerrada: Y=8.00 a 9.00. -->
+        <collision name="puerta_2_collision">
+          <pose>-1.02 8.50 1.00 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.04 1.00 2.00</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="puerta_2_visual">
+          <pose>-1.02 8.50 1.00 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.04 1.00 2.00</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.35 0.45 0.55 1</ambient>
+            <diffuse>0.35 0.45 0.55 1</diffuse>
+          </material>
+        </visual>
+        <!-- Pared sobre puerta 2: Z=2.00 a 3.20. -->
+        <collision name="sobre_puerta_2_collision">
+          <pose>-1.14 8.50 2.60 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.28 1.00 1.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="sobre_puerta_2_visual">
+          <pose>-1.14 8.50 2.60 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.28 1.00 1.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+        <!-- Pared final: Y=9.00 a 9.25. -->
+        <collision name="pared_final_collision">
+          <pose>-1.14 9.125 1.60 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.28 0.25 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pared_final_visual">
+          <pose>-1.14 9.125 1.60 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.28 0.25 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <!-- =====================================================
+         SECCION 06 - RETORNO Y NUEVA PARED LARGA
+
+         Retorno transversal: 0.28 + 0.95 = 1.23 m.
+         Tramo longitudinal total: 0.28 + 7.45 = 7.73 m.
+         ===================================================== -->
+    <model name="pared_retorno">
+      <static>true</static>
+      <pose>-0.665 9.39 1.60 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.23 0.28 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.23 0.28 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="pared_larga_izquierda">
+      <static>true</static>
+      <!-- Cara interior X=-0.05; desde Y=9.53 hasta Y=16.98. -->
+      <pose>-0.19 13.255 1.60 0 0 0</pose>
+      <link name="link">
+        <collision name="pared_larga_collision">
+          <geometry>
+            <box>
+              <size>0.28 7.45 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pared_larga_visual">
+          <geometry>
+            <box>
+              <size>0.28 7.45 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <!-- =====================================================
+         SECCION 07 - LATERAL DERECHO EXISTENTE
+         Columnas: altura 3.20 m.
+         Muretes: altura 1.23 m.
+         ===================================================== -->
     <model name="tramo_derecho_inicial">
       <static>true</static>
-      <pose>2.530000 0.725000 1.600000 0.000000 0.000000 0.000000</pose>
+      <pose>2.53 0.725 1.60 0 0 0</pose>
       <link name="link">
         <collision name="collision">
           <geometry>
             <box>
-              <size>0.28 1.45 3.2</size>
+              <size>0.28 1.45 3.20</size>
             </box>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
             <box>
-              <size>0.28 1.45 3.2</size>
-            </box>
-          </geometry>
-          <material>
-            <ambient>0.80 0.78 0.72 1</ambient>
-            <diffuse>0.80 0.78 0.72 1</diffuse>
-          </material>
-        </visual>
-      </link>
-    </model>
-    <model name="columna_derecha_1">
-      <static>true</static>
-      <pose>2.530000 2.540000 1.600000 0.000000 0.000000 0.000000</pose>
-      <link name="link">
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>0.28 0.28 3.2</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>0.28 0.28 3.2</size>
-            </box>
-          </geometry>
-          <material>
-            <ambient>0.80 0.78 0.72 1</ambient>
-            <diffuse>0.80 0.78 0.72 1</diffuse>
-          </material>
-        </visual>
-      </link>
-    </model>
-    <model name="columna_derecha_2">
-      <static>true</static>
-      <pose>2.530000 3.850000 1.600000 0.000000 0.000000 0.000000</pose>
-      <link name="link">
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>0.28 0.28 3.2</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>0.28 0.28 3.2</size>
+              <size>0.28 1.45 3.20</size>
             </box>
           </geometry>
           <material>
@@ -185,7 +539,7 @@
     </model>
     <model name="murete_derecho_1">
       <static>true</static>
-      <pose>2.530000 1.925000 0.615000 0.000000 0.000000 0.000000</pose>
+      <pose>2.53 1.925 0.615 0 0 0</pose>
       <link name="link">
         <collision name="collision">
           <geometry>
@@ -207,57 +561,182 @@
         </visual>
       </link>
     </model>
-    <model name="murete_derecho_2">
+    <model name="columna_derecha_1">
       <static>true</static>
-      <pose>2.530000 3.195000 0.615000 0.000000 0.000000 0.000000</pose>
+      <pose>2.53 2.54 1.60 0 0 0</pose>
       <link name="link">
         <collision name="collision">
           <geometry>
             <box>
-              <size>0.28 1.03 1.23</size>
+              <size>0.28 0.28 3.20</size>
             </box>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
             <box>
-              <size>0.28 1.03 1.23</size>
+              <size>0.28 0.28 3.20</size>
             </box>
           </geometry>
-          <material>
-            <ambient>0.60 0.30 0.20 1</ambient>
-            <diffuse>0.60 0.30 0.20 1</diffuse>
-          </material>
-        </visual>
-      </link>
-    </model>
-    <model name="pared_ensanchamiento">
-      <static>true</static>
-      <pose>-0.64 4.35 1.60 0 0 0</pose>
-
-      <link name="link">
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>0.72 0.28 3.20</size>
-            </box>
-          </geometry>
-        </collision>
-
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>0.72 0.28 3.20</size>
-            </box>
-          </geometry>
-
           <material>
             <ambient>0.80 0.78 0.72 1</ambient>
             <diffuse>0.80 0.78 0.72 1</diffuse>
           </material>
         </visual>
       </link>
-    </model>    
+    </model>
+    <model name="murete_derecho_2">
+      <static>true</static>
+      <pose>2.53 3.195 0.615 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.28 1.03 1.23</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.28 1.03 1.23</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.60 0.30 0.20 1</ambient>
+            <diffuse>0.60 0.30 0.20 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="columna_derecha_2">
+      <static>true</static>
+      <pose>2.53 3.85 1.60 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.28 0.28 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.28 0.28 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <!-- murete_derecho_3: largo 1.03 m; Y=3.99 a 5.02; altura 1.23 m. -->
+    <model name="murete_derecho_3">
+      <static>true</static>
+      <pose>2.53 4.505 0.615 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.28 1.03 1.23</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.28 1.03 1.23</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.60 0.30 0.20 1</ambient>
+            <diffuse>0.60 0.30 0.20 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <!-- columna_derecha_3: largo 0.28 m; Y=5.02 a 5.30; altura 3.20 m. -->
+    <model name="columna_derecha_3">
+      <static>true</static>
+      <pose>2.53 5.160 1.600 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.28 0.28 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.28 0.28 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <!-- murete_derecho_4: largo 1.04 m; Y=5.30 a 6.34; altura 1.23 m. -->
+    <model name="murete_derecho_4">
+      <static>true</static>
+      <pose>2.53 5.820 0.615 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.28 1.04 1.23</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.28 1.04 1.23</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.60 0.30 0.20 1</ambient>
+            <diffuse>0.60 0.30 0.20 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <!-- pared_derecha_291: largo 2.91 m; Y=6.34 a 9.25; altura 3.20 m. -->
+    <model name="pared_derecha_291">
+      <static>true</static>
+      <pose>2.53 7.795 1.600 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.28 2.91 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.28 2.91 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <!-- =====================================================
+         SECCION 08 - INTERFAZ Y CAMARA
+         camera_pose controla la vista inicial.
+         ===================================================== -->
     <gui fullscreen="0">
       <plugin filename="MinimalScene" name="3D View">
         <gz-gui>
