@@ -194,6 +194,209 @@
             <diffuse>0.55 0.52 0.47 1</diffuse>
           </material>
         </visual>
+        <collision name="acceso_ascensor_collision">
+          <pose>2.81 16.385 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.28 1.59 0.10</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="acceso_ascensor_visual">
+          <pose>2.81 16.385 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.28 1.59 0.10</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.55 0.52 0.47 1</ambient>
+            <diffuse>0.55 0.52 0.47 1</diffuse>
+          </material>
+        </visual>
+        <collision name="continuacion_derecha_collision">
+          <pose>1.17 19.05 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>3.00 4.14 0.10</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="continuacion_derecha_visual">
+          <pose>1.17 19.05 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>3.00 4.14 0.10</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.55 0.52 0.47 1</ambient>
+            <diffuse>0.55 0.52 0.47 1</diffuse>
+          </material>
+        </visual>
+        <collision name="continuacion_izquierda_collision">
+          <pose>1.03 22.01 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>2.72 1.78 0.10</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="continuacion_izquierda_visual">
+          <pose>1.03 22.01 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>2.72 1.78 0.10</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.55 0.52 0.47 1</ambient>
+            <diffuse>0.55 0.52 0.47 1</diffuse>
+          </material>
+        </visual>
+        <!-- Piso de la zona inferior en U y union con el pasillo. -->
+        <collision name="piso_zona_inferior_collision">
+          <pose>-2.975 26.355 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>5.85 6.91 0.10</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="piso_zona_inferior_visual">
+          <pose>-2.975 26.355 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>5.85 6.91 0.10</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.55 0.52 0.47 1</ambient>
+            <diffuse>0.55 0.52 0.47 1</diffuse>
+          </material>
+        </visual>
+        <collision name="piso_union_zona_inferior_collision">
+          <pose>-3.115 22.76 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>5.57 0.28 0.10</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="piso_union_zona_inferior_visual">
+          <pose>-3.115 22.76 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>5.57 0.28 0.10</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.55 0.52 0.47 1</ambient>
+            <diffuse>0.55 0.52 0.47 1</diffuse>
+          </material>
+        </visual>
+        <!-- Piso del pasillo y bases junto a las escaleras. -->
+        <collision name="pasillo_junto_escaleras_collision">
+          <pose>1.17 24.16 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>2.44 2.52 0.10</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pasillo_junto_escaleras_visual">
+          <pose>1.17 24.16 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>2.44 2.52 0.10</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.55 0.52 0.47 1</ambient>
+            <diffuse>0.55 0.52 0.47 1</diffuse>
+          </material>
+        </visual>
+        <collision name="base_refuerzo_escaleras_collision">
+          <pose>2.81 20.98 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.28 0.28 0.10</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="base_refuerzo_escaleras_visual">
+          <pose>2.81 20.98 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.28 0.28 0.10</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.55 0.52 0.47 1</ambient>
+            <diffuse>0.55 0.52 0.47 1</diffuse>
+          </material>
+        </visual>
+        <collision name="base_columna_escaleras_collision">
+          <pose>2.67 23.575 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.56 0.25 0.10</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="base_columna_escaleras_visual">
+          <pose>2.67 23.575 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.56 0.25 0.10</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.55 0.52 0.47 1</ambient>
+            <diffuse>0.55 0.52 0.47 1</diffuse>
+          </material>
+        </visual>
+        <!-- Piso plano de 0.56 m antes de ambos tramos de escaleras. -->
+        <collision name="piso_previo_escalera_subida_collision">
+          <pose>2.67 22.285 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.56 2.33 0.10</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="piso_previo_escalera_subida_visual">
+          <pose>2.67 22.285 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.56 2.33 0.10</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.55 0.52 0.47 1</ambient>
+            <diffuse>0.55 0.52 0.47 1</diffuse>
+          </material>
+        </visual>
+        <collision name="piso_previo_escalera_bajada_collision">
+          <pose>2.67 24.560 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.56 1.72 0.10</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="piso_previo_escalera_bajada_visual">
+          <pose>2.67 24.560 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.56 1.72 0.10</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.55 0.52 0.47 1</ambient>
+            <diffuse>0.55 0.52 0.47 1</diffuse>
+          </material>
+        </visual>
       </link>
     </model>
     <!-- =====================================================
@@ -508,6 +711,224 @@
         </visual>
       </link>
     </model>
+    <!-- Continuacion izquierda: dos puertas, separacion y pared de 3.80 m. -->
+    <model name="puerta_izquierda_3">
+      <static>true</static>
+      <pose>-0.07 17.48 1.00 0 0 0</pose>
+      <link name="link">
+        <collision name="puerta_izquierda_3_collision">
+          <geometry>
+            <box>
+              <size>0.04 1.00 2.00</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="puerta_izquierda_3_visual">
+          <geometry>
+            <box>
+              <size>0.04 1.00 2.00</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.35 0.45 0.55 1</ambient>
+            <diffuse>0.35 0.45 0.55 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="pared_sobre_puerta_izquierda_3">
+      <static>true</static>
+      <pose>-0.19 17.48 2.60 0 0 0</pose>
+      <link name="link">
+        <collision name="pared_sobre_puerta_izquierda_3_collision">
+          <geometry>
+            <box>
+              <size>0.28 1.00 1.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pared_sobre_puerta_izquierda_3_visual">
+          <geometry>
+            <box>
+              <size>0.28 1.00 1.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="separacion_puertas_izquierda_012">
+      <static>true</static>
+      <pose>-0.19 18.04 1.60 0 0 0</pose>
+      <link name="link">
+        <collision name="separacion_puertas_izquierda_012_collision">
+          <geometry>
+            <box>
+              <size>0.28 0.12 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="separacion_puertas_izquierda_012_visual">
+          <geometry>
+            <box>
+              <size>0.28 0.12 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="puerta_izquierda_4">
+      <static>true</static>
+      <pose>-0.07 18.60 1.00 0 0 0</pose>
+      <link name="link">
+        <collision name="puerta_izquierda_4_collision">
+          <geometry>
+            <box>
+              <size>0.04 1.00 2.00</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="puerta_izquierda_4_visual">
+          <geometry>
+            <box>
+              <size>0.04 1.00 2.00</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.35 0.45 0.55 1</ambient>
+            <diffuse>0.35 0.45 0.55 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="pared_sobre_puerta_izquierda_4">
+      <static>true</static>
+      <pose>-0.19 18.60 2.60 0 0 0</pose>
+      <link name="link">
+        <collision name="pared_sobre_puerta_izquierda_4_collision">
+          <geometry>
+            <box>
+              <size>0.28 1.00 1.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pared_sobre_puerta_izquierda_4_visual">
+          <geometry>
+            <box>
+              <size>0.28 1.00 1.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="pared_izquierda_380">
+      <static>true</static>
+      <pose>-0.19 21.00 1.60 0 0 0</pose>
+      <link name="link">
+        <collision name="pared_izquierda_380_collision">
+          <geometry>
+            <box>
+              <size>0.28 3.80 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pared_izquierda_380_visual">
+          <geometry>
+            <box>
+              <size>0.28 3.80 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <!-- ZONA INFERIOR IZQUIERDA: dos paredes transversales con 6.63 m libres entre sus caras interiores. -->
+    <model name="pared_transversal_inicio">
+      <static>true</static>
+      <pose>-2.975 22.76 1.60 0 0 0</pose>
+      <link name="link">
+        <collision name="pared_izquierda_380_collision">
+          <geometry>
+            <box>
+              <size>5.29 0.28 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pared_izquierda_380_visual">
+          <geometry>
+            <box>
+              <size>5.29 0.28 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="pared_lateral_zona_inferior">
+      <static>true</static>
+      <pose>-5.76 26.075 1.60 0 0 0</pose>
+      <link name="link">
+        <collision name="pared_izquierda_380_collision">
+          <geometry>
+            <box>
+              <size>0.28 6.91 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pared_izquierda_380_visual">
+          <geometry>
+            <box>
+              <size>0.28 6.91 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="pared_transversal_final">
+      <static>true</static>
+      <pose>-2.975 29.67 1.60 0 0 0</pose>
+      <link name="link">
+        <collision name="pared_izquierda_380_collision">
+          <geometry>
+            <box>
+              <size>5.85 0.28 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pared_izquierda_380_visual">
+          <geometry>
+            <box>
+              <size>5.85 0.28 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
     <!-- =====================================================
          SECCION 07 - LATERAL DERECHO EXISTENTE
          Columnas: altura 3.20 m.
@@ -729,6 +1150,687 @@
           <material>
             <ambient>0.80 0.78 0.72 1</ambient>
             <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <!-- murete_derecho_5: Y=9.25 a 10.31 m. -->
+    <model name="murete_derecho_5">
+      <static>true</static>
+      <pose>2.53 9.780 0.615 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.28 1.06 1.23</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.28 1.06 1.23</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.60 0.30 0.20 1</ambient>
+            <diffuse>0.60 0.30 0.20 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <!-- columna_derecha_4: Y=10.31 a 10.59 m. -->
+    <model name="columna_derecha_4">
+      <static>true</static>
+      <pose>2.53 10.450 1.600 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.28 0.28 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.28 0.28 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <!-- murete_derecho_6: Y=10.59 a 11.62 m. -->
+    <model name="murete_derecho_6">
+      <static>true</static>
+      <pose>2.53 11.105 0.615 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.28 1.03 1.23</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.28 1.03 1.23</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.60 0.30 0.20 1</ambient>
+            <diffuse>0.60 0.30 0.20 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <!-- columna_derecha_5: Y=11.62 a 11.90 m. -->
+    <model name="columna_derecha_5">
+      <static>true</static>
+      <pose>2.53 11.760 1.600 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.28 0.28 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.28 0.28 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <!-- murete_derecho_7: Y=11.90 a 12.92 m. -->
+    <model name="murete_derecho_7">
+      <static>true</static>
+      <pose>2.53 12.410 0.615 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.28 1.02 1.23</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.28 1.02 1.23</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.60 0.30 0.20 1</ambient>
+            <diffuse>0.60 0.30 0.20 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <!-- columna_derecha_6: Y=12.92 a 13.20 m. -->
+    <model name="columna_derecha_6">
+      <static>true</static>
+      <pose>2.53 13.060 1.600 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.28 0.28 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.28 0.28 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <!-- murete_derecho_8: Y=13.20 a 14.24 m. -->
+    <model name="murete_derecho_8">
+      <static>true</static>
+      <pose>2.53 13.720 0.615 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.28 1.04 1.23</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.28 1.04 1.23</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.60 0.30 0.20 1</ambient>
+            <diffuse>0.60 0.30 0.20 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <!-- columna_derecha_7: Y=14.24 a 14.52 m. -->
+    <model name="columna_derecha_7">
+      <static>true</static>
+      <pose>2.53 14.380 1.600 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.28 0.28 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.28 0.28 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <!-- murete_derecho_9: Y=14.52 a 15.59 m. -->
+    <model name="murete_derecho_9">
+      <static>true</static>
+      <pose>2.53 15.055 0.615 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.28 1.07 1.23</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.28 1.07 1.23</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.60 0.30 0.20 1</ambient>
+            <diffuse>0.60 0.30 0.20 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <!-- columna_derecha_8: Y=15.59 a 15.87 m. -->
+    <model name="columna_derecha_8">
+      <static>true</static>
+      <pose>2.67 15.73 1.60 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.56 0.28 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.56 0.28 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <!-- Ascensor y continuacion del lateral derecho. -->
+    <model name="puerta_ascensor">
+      <static>true</static>
+      <pose>2.97 16.385 1.00 0 0 0</pose>
+      <link name="link">
+        <collision name="puerta_ascensor_collision">
+          <geometry>
+            <box>
+              <size>0.04 1.03 2.00</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="puerta_ascensor_visual">
+          <geometry>
+            <box>
+              <size>0.04 1.03 2.00</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.35 0.45 0.55 1</ambient>
+            <diffuse>0.35 0.45 0.55 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="pared_sobre_ascensor">
+      <static>true</static>
+      <pose>3.09 16.385 2.60 0 0 0</pose>
+      <link name="link">
+        <collision name="pared_sobre_ascensor_collision">
+          <geometry>
+            <box>
+              <size>0.28 1.59 1.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pared_sobre_ascensor_visual">
+          <geometry>
+            <box>
+              <size>0.28 1.59 1.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="panel_ascensor_lado_columna_8">
+      <static>true</static>
+      <pose>3.09 15.73 1.00 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.28 0.28 2.00</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.28 0.28 2.00</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="panel_ascensor_lado_columna_9">
+      <static>true</static>
+      <pose>3.09 17.04 1.00 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.28 0.28 2.00</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.28 0.28 2.00</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="columna_derecha_9">
+      <static>true</static>
+      <pose>2.67 17.04 1.60 0 0 0</pose>
+      <link name="link">
+        <collision name="columna_derecha_9_collision">
+          <geometry>
+            <box>
+              <size>0.56 0.28 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="columna_derecha_9_visual">
+          <geometry>
+            <box>
+              <size>0.56 0.28 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="murete_derecho_10">
+      <static>true</static>
+      <pose>2.53 17.705 0.615 0 0 0</pose>
+      <link name="link">
+        <collision name="murete_derecho_10_collision">
+          <geometry>
+            <box>
+              <size>0.28 1.05 1.23</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="murete_derecho_10_visual">
+          <geometry>
+            <box>
+              <size>0.28 1.05 1.23</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.60 0.30 0.20 1</ambient>
+            <diffuse>0.60 0.30 0.20 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="pared_derecha_289">
+      <static>true</static>
+      <pose>2.53 19.675 1.60 0 0 0</pose>
+      <link name="link">
+        <collision name="pared_derecha_289_collision">
+          <geometry>
+            <box>
+              <size>0.28 2.89 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pared_derecha_289_visual">
+          <geometry>
+            <box>
+              <size>0.28 2.89 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <!-- ZONA DE ESCALERAS: subida Y=21.12 a 23.45; columna Y=23.45 a 23.70; bajada Y=23.70 a 25.42. -->
+    <model name="refuerzo_final_pared_289">
+      <static>true</static>
+      <pose>2.81 20.98 1.60 0 0 0</pose>
+      <link name="link">
+        <collision name="refuerzo_final_pared_289_collision">
+          <geometry>
+            <box>
+              <size>0.28 0.28 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="refuerzo_final_pared_289_visual">
+          <geometry>
+            <box>
+              <size>0.28 0.28 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="columna_entre_escaleras">
+      <static>true</static>
+      <pose>2.67 23.575 1.60 0 0 0</pose>
+      <link name="link">
+        <collision name="columna_entre_escaleras_collision">
+          <geometry>
+            <box>
+              <size>0.56 0.25 3.20</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="columna_entre_escaleras_visual">
+          <geometry>
+            <box>
+              <size>0.56 0.25 3.20</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.80 0.78 0.72 1</ambient>
+            <diffuse>0.80 0.78 0.72 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <!-- Escaleras provisionales: cinco peldaños visibles por acceso. Huella 0.24 m, contrahuella 0.17 m. -->
+    <model name="escalera_subida">
+      <static>true</static>
+      <pose>2.95 22.285 0 0 0 0</pose>
+      <link name="link">
+        <collision name="peldano_1_collision">
+          <pose>0.120 0 0.145 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.240 2.170 0.050</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="peldano_1_visual">
+          <pose>0.120 0 0.145 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.240 2.170 0.050</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.24 0.25 0.27 1</ambient>
+            <diffuse>0.24 0.25 0.27 1</diffuse>
+          </material>
+        </visual>
+        <collision name="peldano_2_collision">
+          <pose>0.360 0 0.315 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.240 2.170 0.050</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="peldano_2_visual">
+          <pose>0.360 0 0.315 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.240 2.170 0.050</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.24 0.25 0.27 1</ambient>
+            <diffuse>0.24 0.25 0.27 1</diffuse>
+          </material>
+        </visual>
+        <collision name="peldano_3_collision">
+          <pose>0.600 0 0.485 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.240 2.170 0.050</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="peldano_3_visual">
+          <pose>0.600 0 0.485 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.240 2.170 0.050</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.24 0.25 0.27 1</ambient>
+            <diffuse>0.24 0.25 0.27 1</diffuse>
+          </material>
+        </visual>
+        <collision name="peldano_4_collision">
+          <pose>0.840 0 0.655 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.240 2.170 0.050</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="peldano_4_visual">
+          <pose>0.840 0 0.655 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.240 2.170 0.050</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.24 0.25 0.27 1</ambient>
+            <diffuse>0.24 0.25 0.27 1</diffuse>
+          </material>
+        </visual>
+        <collision name="peldano_5_collision">
+          <pose>1.080 0 0.825 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.240 2.170 0.050</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="peldano_5_visual">
+          <pose>1.080 0 0.825 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.240 2.170 0.050</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.24 0.25 0.27 1</ambient>
+            <diffuse>0.24 0.25 0.27 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="escalera_bajada">
+      <static>true</static>
+      <pose>2.95 24.560 0 0 0 0</pose>
+      <link name="link">
+        <collision name="peldano_1_collision">
+          <pose>0.120 0 -0.195 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.240 1.560 0.050</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="peldano_1_visual">
+          <pose>0.120 0 -0.195 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.240 1.560 0.050</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.24 0.25 0.27 1</ambient>
+            <diffuse>0.24 0.25 0.27 1</diffuse>
+          </material>
+        </visual>
+        <collision name="peldano_2_collision">
+          <pose>0.360 0 -0.365 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.240 1.560 0.050</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="peldano_2_visual">
+          <pose>0.360 0 -0.365 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.240 1.560 0.050</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.24 0.25 0.27 1</ambient>
+            <diffuse>0.24 0.25 0.27 1</diffuse>
+          </material>
+        </visual>
+        <collision name="peldano_3_collision">
+          <pose>0.600 0 -0.535 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.240 1.560 0.050</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="peldano_3_visual">
+          <pose>0.600 0 -0.535 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.240 1.560 0.050</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.24 0.25 0.27 1</ambient>
+            <diffuse>0.24 0.25 0.27 1</diffuse>
+          </material>
+        </visual>
+        <collision name="peldano_4_collision">
+          <pose>0.840 0 -0.705 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.240 1.560 0.050</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="peldano_4_visual">
+          <pose>0.840 0 -0.705 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.240 1.560 0.050</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.24 0.25 0.27 1</ambient>
+            <diffuse>0.24 0.25 0.27 1</diffuse>
+          </material>
+        </visual>
+        <collision name="peldano_5_collision">
+          <pose>1.080 0 -0.875 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.240 1.560 0.050</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="peldano_5_visual">
+          <pose>1.080 0 -0.875 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.240 1.560 0.050</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.24 0.25 0.27 1</ambient>
+            <diffuse>0.24 0.25 0.27 1</diffuse>
           </material>
         </visual>
       </link>
