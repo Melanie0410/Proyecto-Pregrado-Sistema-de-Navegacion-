@@ -1,4 +1,4 @@
-# Semana 15: modelo G1 y prueba de LiDAR
+# Semana 15: modelo G1, pruebas LiDAR y escenario Calatayud
 
 ## Alcance y resultados
 
@@ -37,6 +37,8 @@ Si el repositorio ya existe, no es necesario clonarlo nuevamente.
 - worlds/g1_mundo.sdf: modelo fijo para inspección visual.
 - worlds/g1_lidar.sdf: modelo fijo con LiDAR aproximado.
 - worlds/g1_lidar_pared.sdf: prueba del sensor con pared.
+- worlds/edificio_calatayud.sdf: representación del edificio Calatayud.
+- worlds/generar_escenario.py: generador parametrizable del escenario.
 - rviz/g1_lidar.rviz: configuración de visualización.
 - ../../evidencias/semana_15/: capturas de las pruebas.
 
@@ -104,3 +106,66 @@ La cuadrícula es visual: estos mundos no incluyen suelo físico.
 
 La comparación con la pared es visual; queda pendiente comprobar
 numéricamente las distancias e integrar el escenario medido.
+
+
+## Escenario del edificio Calatayud
+
+### Construcción del entorno
+
+Se desarrolló una representación tridimensional simplificada del área seleccionada del segundo piso del edificio Calatayud de la Universidad Santo Tomás, utilizando las medidas obtenidas durante el reconocimiento del espacio.
+
+El escenario incorpora corredores, muros, puertas, acceso al ascensor, muretes con barandas y una escalera en U compuesta por dos tramos de bajada y un descanso intermedio.
+
+La geometría se organizó por zonas y se asignaron nombres descriptivos a los elementos, con el propósito de facilitar su identificación, mantenimiento y modificación.
+
+El escenario constituye una base geométrica para las siguientes etapas del proyecto. Su construcción no implica que se haya implementado o validado la navegación autónoma del robot.
+
+### Archivos del escenario
+
+**`worlds/edificio_calatayud.sdf`**
+
+Contiene la representación del entorno en formato SDF (Simulation Description Format). Este archivo permite cargar el escenario directamente en Gazebo Fortress.
+
+**`worlds/generar_escenario.py`**
+
+Script en Python utilizado para generar el archivo SDF a partir de los parámetros geométricos del escenario. Permite modificar dimensiones y posiciones de los elementos definidos en el código y regenerar el modelo sin editar manualmente toda su estructura XML.
+
+### Ejecución en Gazebo Fortress
+
+Desde la raíz del repositorio:
+
+```bash
+ign gazebo simulacion/semana_15/worlds/edificio_calatayud.sdf
+```
+
+Una vez abierto Gazebo, pulsar **Play** para iniciar la simulación.
+
+Para modificar el escenario se deben ajustar los parámetros correspondientes en `generar_escenario.py` y ejecutar el script desde la carpeta `worlds`, verificando posteriormente el archivo SDF generado.
+
+### Evidencias del escenario
+
+Las siguientes imágenes documentan las principales características de la representación tridimensional:
+
+**Vista general del edificio**
+
+![Vista general del escenario Calatayud](../../evidencias/semana_15/09_calatayud_vista_general.png)
+
+**Escalera en U, descanso y barandas**
+
+![Escalera y barandas del escenario](../../evidencias/semana_15/10_calatayud_escalera_barandas.png)
+
+**Corredor y accesos**
+
+![Corredor con puertas del edificio Calatayud](../../evidencias/semana_15/11_calatayud_corredor_puertas.png)
+
+**Zona inferior y acceso**
+
+![Zona inferior y acceso del escenario](../../evidencias/semana_15/12_calatayud_zona_inferior_acceso.png)
+
+### Resultados y limitaciones
+
+Se comprobó que el archivo `edificio_calatayud.sdf` puede cargarse en Gazebo Fortress y que la geometría construida representa los elementos arquitectónicos seleccionados del edificio.
+
+El generador Python facilita la modificación de la geometría y la regeneración del archivo SDF.
+
+En esta etapa no se ha verificado el desplazamiento del Unitree G1 dentro del escenario Calatayud ni se han ejecutado pruebas de localización, planificación o navegación autónoma sobre este entorno.
