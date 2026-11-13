@@ -108,6 +108,53 @@ La comparación con la pared es visual; queda pendiente comprobar
 numéricamente las distancias e integrar el escenario medido.
 
 
+
+## Evidencias del modelo Unitree G1 y pruebas LiDAR
+
+### Inspección del modelo del robot
+
+Se inspeccionó el modelo oficial `g1_29dof_rev_1_0.urdf` del Unitree G1, identificando su estructura, articulaciones y geometrías de colisión. El archivo URDF original se conserva en el repositorio oficial de Unitree, utilizado como dependencia externa.
+
+**Visualización del modelo URDF**
+
+![Modelo URDF del Unitree G1](../../evidencias/semana_15/01_g1_urdf_visualizador.png)
+
+**Geometrías de colisión**
+
+![Geometrías de colisión del G1](../../evidencias/semana_15/02_g1_geometrias_colision.png)
+
+**Articulaciones y sistemas de referencia**
+
+![Articulaciones y ejes del G1](../../evidencias/semana_15/03_g1_articulaciones_y_ejes.png)
+
+**Representación del G1 en Gazebo Fortress**
+
+![Modelo G1 en Gazebo](../../evidencias/semana_15/04_g1_gazebo.png)
+
+### Pruebas preliminares del LiDAR
+
+Se realizaron pruebas de un LiDAR virtual aproximado, incorporado al modelo del G1, comparando un escenario sin obstáculos con otro que incluye una pared estática.
+
+Los datos generados por Gazebo se transfirieron a ROS 2 mediante `ros_gz_bridge` y se visualizaron en RViz utilizando mensajes `sensor_msgs/msg/PointCloud2`.
+
+**Visualización del LiDAR sin pared**
+
+![LiDAR sin pared en RViz](../../evidencias/semana_15/05_lidar_sin_pared_rviz.png)
+
+**Prueba con pared y comunicación ROS 2**
+
+![LiDAR con pared](../../evidencias/semana_15/06_lidar_con_pared_estado_ros2.png)
+
+**Visualización ampliada de la nube de puntos con pared**
+
+![Nube de puntos con pared](../../evidencias/semana_15/07_lidar_con_pared_vista_ampliada.png)
+
+**Comunicación entre nodos mediante rqt_graph**
+
+![Grafo de comunicación ROS 2](../../evidencias/semana_15/08_rqt_graph_comunicacion_ros2.png)
+
+
+
 ## Escenario del edificio Calatayud
 
 ### Construcción del entorno
