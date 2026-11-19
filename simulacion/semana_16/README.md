@@ -1,21 +1,19 @@
-# Semana 16 – Integración del entorno Calatayud con Unitree G1 EDU
+
+# Semana 16 – Integración del entorno de simulación y modelo Unitree G1
 
 ## 1. Descripción general
 
-Durante la semana 16 se avanzó en la construcción y ajuste del entorno de simulación del proyecto de navegación asistida con el robot humanoide Unitree G1 EDU.
+Durante la semana 16 se trabajó en la integración del modelo del robot humanoide Unitree G1 EDU con el entorno de simulación del bloque Calatayud de la Universidad Santo Tomás.
 
-El trabajo se centró en integrar el modelo del robot con el escenario unificado del bloque Calatayud, ajustar sus dimensiones físicas, comprobar el comportamiento del movimiento y verificar la disponibilidad de odometría para los siguientes procesos de localización y navegación.
-
-Las pruebas se realizaron en Gazebo Fortress, utilizando ROS 2 Humble.
+El trabajo se centró en consolidar un escenario unificado, ajustar la ubicación y las dimensiones del robot dentro del entorno, comprobar su comportamiento físico básico e integrar la publicación de datos de odometría y del sensor LiDAR virtual.
 
 ## 2. Objetivos
 
-- Consolidar el escenario unificado de simulación del bloque Calatayud.
-- Ajustar las dimensiones y la posición del modelo del Unitree G1 EDU.
-- Comprobar el desplazamiento del robot mediante comandos de velocidad.
-- Verificar la publicación y continuidad de la odometría.
-- Corregir problemas de colisión entre el modelo del robot y las paredes.
-- Identificar los marcos de referencia necesarios para integrar el LiDAR con ROS 2.
+- Integrar el modelo del robot Unitree G1 EDU con el escenario de simulación del bloque Calatayud.
+- Ajustar los parámetros geométricos y la posición inicial del robot.
+- Verificar el desplazamiento del robot dentro del entorno.
+- Comprobar la publicación de información de odometría.
+- Identificar el sistema de referencia asociado a los datos del LiDAR virtual.
 
 ## 3. Estructura de archivos
 
@@ -24,186 +22,110 @@ Los archivos desarrollados durante esta semana se encuentran organizados de la s
 ```text
 simulacion/
 └── semana_16/
-    └── worlds/
-        ├── generar_mundo_unificado.py
-        ├── calcular_altura_pelvis.py
-        ├── medir_dimensiones_robot.py
-        └── calatayud_g1.sdf
+    ├── worlds/
+    │   ├── generar_mundo_unificado.py
+    │   ├── calcular_altura_pelvis.py
+    │   ├── medir_dimensiones_robot.py
+    │   └── calatayud_g1.sdf
+    └── README.md
 
 evidencias/
 └── semana_16/
-    ├── 01_robot_corredor.png
-    ├── 02_robot_colision_pared.png
-    ├── 03_prueba_odometria.png
     ├── Screenshot from 2026-11-19 16-20-09.png
     ├── Screenshot from 2026-11-19 16-29-18.png
-    └── Screenshot from 2026-11-19 16-41-19.png
+    ├── Screenshot from 2026-11-19 16-41-19.png
+    ├── 01_robot_corredor.png
+    ├── 02_robot_colision_pared.png
+    └── 03_prueba_odometria.png
 ```
 
-### Descripción de los archivos
+## 4. Configuración del escenario
 
-| Archivo | Función |
-|---|---|
-| `generar_mundo_unificado.py` | Generación del escenario unificado mediante parámetros geométricos. |
-| `calcular_altura_pelvis.py` | Herramienta auxiliar para calcular la altura de la pelvis del modelo. |
-| `medir_dimensiones_robot.py` | Herramienta auxiliar para medir dimensiones del robot. |
-| `calatayud_g1.sdf` | Mundo SDF generado para la simulación del entorno Calatayud con el Unitree G1 EDU. |
+Se desarrolló un mundo unificado que integra la infraestructura del bloque Calatayud con el modelo del robot Unitree G1 EDU.
 
-## 4. Configuración geométrica
-
-Para la generación del mundo se utilizaron los siguientes parámetros:
+Para la generación del escenario se utilizaron los siguientes parámetros:
 
 | Parámetro | Valor |
 |---|---:|
-| Posición vertical de referencia (`--z`) | 0,792 m |
-| Radio del modelo (`--radio`) | 0,40 m |
-| Altura del modelo (`--altura`) | 1,32 m |
+| Posición vertical inicial (`--z`) | 0.792 m |
+| Radio de ajuste (`--radio`) | 0.40 m |
+| Altura de ajuste (`--altura`) | 1.32 m |
+| Ancho del corredor | 2.39 m |
+| Altura entre piso y techo | 3.20 m |
+| Espesor de paredes | 0.28 m |
+| Altura del murete | 1.23 m |
 
-El radio de 0,40 m se utilizó para ajustar el comportamiento de colisión del modelo, evitando que las manos atravesaran las paredes durante las pruebas.
+El archivo SDF generado fue sometido a una comprobación de sintaxis, obteniendo el resultado `Valid.`.
 
-El archivo `calatayud_g1.sdf` corresponde a la generación realizada con estos parámetros.
+## 5. Pruebas de comportamiento del robot
 
-## 5. Pruebas realizadas
+Se realizaron pruebas de desplazamiento dentro del escenario para comprobar el comportamiento básico del modelo.
 
-### 5.1. Generación del mundo
+Durante la prueba de movimiento hacia adelante, se observó que el robot se desplazó siguiendo su orientación local. En el registro realizado, la coordenada X permaneció en 1.195 m, mientras que la coordenada Y pasó de 1.000 m a 1.864 m.
 
-Se ejecutó el generador del escenario con los parámetros geométricos definidos.
+También se ajustó el radio de colisión a 0.40 m para evitar que las manos del modelo atravesaran las paredes durante la interacción con el entorno.
 
-**Resultado:**
+Estas pruebas permiten verificar aspectos básicos del comportamiento físico del modelo dentro de la simulación, pero no representan una validación de navegación autónoma.
 
-- Radio: 0,40 m.
-- Altura: 1,32 m.
-- Validación del archivo SDF: `Valid.`
+## 6. Verificación de odometría
 
-Esto permitió comprobar que el generador produjo un archivo de mundo válido con la configuración utilizada.
+Se verificó la publicación de información en el tópico `/odom`.
 
-### 5.2. Prueba de desplazamiento
+Durante la prueba se obtuvo una frecuencia aproximada de 50 Hz, con un periodo de publicación cercano a 0.020 segundos y una desviación aproximada de 0.0002 segundos.
 
-Se realizó una prueba de movimiento utilizando la tecla `i` para ordenar el avance del robot.
+Estos resultados permiten comprobar la publicación periódica de los datos de odometría en el entorno simulado.
 
-Se registraron los siguientes valores:
+## 7. Integración inicial del sensor LiDAR
 
-| Variable | Posición inicial | Posición final |
-|---|---:|---:|
-| X | 1,195 m | 1,195 m |
-| Y | 1,000 m | 1,864 m |
+Se identificó el tópico `/g1/lidar/points`, correspondiente a la nube de puntos generada por el LiDAR virtual.
 
-Se observó que el desplazamiento ocurrió sobre el eje Y, mientras que la coordenada X permaneció constante.
+Mediante la inspección del encabezado del mensaje se identificó `mid360_link` como el sistema de referencia (`frame_id`) asociado a los datos publicados.
 
-**Conclusión:** se confirmó que la velocidad de desplazamiento se aplica en el marco propio del robot, permitiendo avanzar en la dirección hacia la que está orientado.
+Durante la visualización en RViz se presentó una advertencia relacionada con el filtro de mensajes y el llenado de su cola (`Message Filter ... queue is full`). Por esta razón, todavía se requiere revisar la configuración de los sistemas de referencia TF y completar la visualización de la nube de puntos.
 
-### 5.3. Verificación de odometría
+## 8. Estado actual y actividades pendientes
 
-Se evaluó la frecuencia de publicación del tópico:
+Los avances de esta semana permitieron consolidar el escenario unificado y realizar verificaciones iniciales del modelo del robot.
 
-```bash
-ros2 topic hz /odom
-```
+Quedan pendientes las siguientes actividades:
 
-**Resultado:**
-
-- Frecuencia medida: aproximadamente 50 Hz.
-- Periodo medio: aproximadamente 0,020 s.
-- Desviación del periodo: aproximadamente 0,0002 s.
-
-La prueba permitió verificar que la odometría se publica de manera continua y estable a la frecuencia configurada durante el ensayo.
-
-### 5.4. Verificación de colisiones
-
-Se realizaron pruebas de interacción entre el modelo del robot y las paredes del entorno.
-
-Se identificó que las manos atravesaban las paredes con la configuración anterior. Después de ajustar el radio del modelo a 0,40 m, se comprobó que las manos dejaron de atravesarlas durante las pruebas realizadas.
-
-**Conclusión:** el ajuste geométrico permitió mejorar el comportamiento de colisión del modelo rígido en el escenario simulado.
-
-Estas pruebas no constituyen una validación de la dinámica bípeda ni del comportamiento de navegación autónoma del robot físico.
-
-## 6. Integración preliminar del LiDAR
-
-Se inició la verificación de la información publicada por el LiDAR virtual para preparar su integración con los procesos de percepción, mapeo y localización.
-
-Se consultó el tópico:
-
-```bash
-ros2 topic echo /g1/lidar/points --once --field header.frame_id
-```
-
-**Resultado obtenido:**
-
-```text
-mid360_link
-```
-
-Con esto se identificó que la nube de puntos publicada en `/g1/lidar/points` utiliza el marco de referencia `mid360_link`.
-
-También se inició la visualización mediante RViz utilizando la configuración disponible:
-
-```bash
-cd ~/navegacion-g1-github
-source /opt/ros/humble/setup.bash
-rviz2 -d simulacion/semana_15/rviz/g1_lidar.rviz
-```
-
-Durante esta prueba se presentó el siguiente mensaje:
-
-```text
-Message Filter dropping message:
-frame 'mid360_link'
-reason 'discarding message because the queue is full'
-```
-
-Este mensaje indica que RViz está descartando mensajes porque su cola se encuentra llena. La visualización y la configuración de las transformaciones entre marcos todavía requieren revisión.
-
-Por lo tanto, la identificación del marco LiDAR se considera verificada, pero la integración completa del sensor con los procesos de localización y mapeo continúa pendiente.
-
-## 7. Resultados consolidados
-
-| Prueba | Resultado | Estado |
-|---|---|---|
-| Generación del mundo | Archivo SDF validado | Verificado |
-| Ajuste geométrico | Radio de 0,40 m y altura de 1,32 m | Verificado |
-| Movimiento del robot | Desplazamiento según su orientación | Verificado |
-| Odometría | Publicación estable a 50 Hz | Verificado |
-| Colisiones | Las manos dejaron de atravesar las paredes | Verificado |
-| Identificación del marco LiDAR | `mid360_link` | Verificado |
-| Visualización LiDAR en RViz | Mensajes descartados por cola llena | Requiere revisión |
-| Integración TF y escaneo 2D | Sin validación completa | Pendiente |
-
-## 8. Aspectos pendientes
-
-Para continuar con el desarrollo se identifican las siguientes actividades:
-
-1. Revisar las transformaciones TF entre los marcos del robot y el sensor LiDAR.
-2. Corregir la configuración de visualización del LiDAR en RViz.
-3. Verificar la relación entre `mid360_link`, `base_link` y los demás marcos disponibles.
-4. Evaluar la conversión de la nube de puntos 3D a un escaneo 2D mediante `PointCloudToLaserScan`, si resulta adecuada para el sensor y la aplicación.
-5. Preparar la integración del sensor con `slam_toolbox` y los componentes de localización de Nav2.
-6. Revisar el comportamiento del robot en la zona de escaleras, donde se han identificado problemas de estabilidad.
-7. Documentar el origen y la licencia de los recursos del modelo `g1_description`.
-8. Continuar con las pruebas de localización y construcción del mapa.
+- Revisar y completar la relación entre los sistemas de referencia TF del robot y el sensor LiDAR.
+- Ajustar la configuración de RViz para visualizar correctamente la nube de puntos.
+- Evaluar la conversión de PointCloud2 a LaserScan, si resulta adecuada para la arquitectura seleccionada.
+- Integrar y evaluar herramientas de SLAM y localización.
+- Continuar las pruebas de estabilidad del robot, especialmente en la zona de escaleras.
+- Verificar las condiciones de uso y licencia de los recursos del modelo del robot.
 
 ## 9. Evidencias de simulación
 
-A continuación, se presentan las evidencias gráficas correspondientes a las pruebas realizadas durante la semana 16.
+A continuación, se presentan las capturas correspondientes al escenario desarrollado y a las pruebas realizadas durante la semana 16.
 
-### 9.1. Evidencias del entorno y las pruebas
+**Figura 1. Evidencia general del entorno de simulación.**
 
-**Figura 1. Modelo Unitree G1 EDU en el corredor.**
+![Entorno de simulación](../../evidencias/semana_16/Screenshot%20from%202026-11-19%2016-20-09.png)
 
-![Robot en corredor](../../../evidencias/semana_16/01_robot_corredor.png)
+**Figura 2. Evidencia complementaria del escenario.**
 
-**Figura 2. Verificación de colisiones entre el robot y las paredes.**
+![Escenario de simulación](../../evidencias/semana_16/Screenshot%20from%202026-11-19%2016-29-18.png)
 
-![Prueba de colisiones](../../../evidencias/semana_16/02_robot_colision_pared.png)
+**Figura 3. Evidencia complementaria de las pruebas.**
 
-**Figura 3. Verificación de la publicación de odometría.**
+![Pruebas de simulación](../../evidencias/semana_16/Screenshot%20from%202026-11-19%2016-41-19.png)
 
-![Prueba de odometría](../../../evidencias/semana_16/03_prueba_odometria.png)**Figura 4. Modelo Unitree G1 EDU en el corredor.**
+**Figura 4. Modelo Unitree G1 EDU en el corredor.**
+
+![Robot en corredor](../../evidencias/semana_16/01_robot_corredor.png)
+
+**Figura 5. Prueba de colisión con la pared.**
+
+![Prueba de colisión](../../evidencias/semana_16/02_robot_colision_pared.png)
+
+**Figura 6. Prueba de odometría.**
+
+![Prueba de odometría](../../evidencias/semana_16/03_prueba_odometria.png)
 
 ## 10. Conclusión
 
-Durante la semana 16 se consolidó un escenario unificado de simulación del bloque Calatayud con el modelo del Unitree G1 EDU. Se realizaron ajustes geométricos y pruebas preliminares que permitieron verificar la generación del mundo, el desplazamiento del modelo, el comportamiento de colisión con las paredes y la publicación estable de odometría a 50 Hz.
+Durante la semana 16 se avanzó en la integración del robot Unitree G1 EDU con el entorno de simulación del bloque Calatayud. Se consolidó el mundo unificado, se realizaron ajustes geométricos y se verificaron aspectos básicos del desplazamiento y la publicación de odometría.
 
-Adicionalmente, se identificó el marco de referencia asociado a la nube de puntos del LiDAR virtual, estableciendo un punto de partida para su integración con los procesos de percepción y localización.
-
-Los resultados obtenidos corresponden a pruebas del modelo en simulación. La integración completa del LiDAR, las transformaciones TF, el mapeo y la navegación autónoma continúan como actividades de desarrollo.
+Adicionalmente, se identificó el sistema de referencia asociado a los datos del LiDAR virtual, dejando como siguiente paso la revisión de TF y la configuración de visualización en RViz. Estos avances constituyen una base para continuar con las etapas de localización, construcción del mapa y navegación dentro del entorno simulado.
