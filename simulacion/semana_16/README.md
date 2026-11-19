@@ -190,15 +190,27 @@ A continuación, se presentan las evidencias gráficas correspondientes a las pr
 
 **Figura 1. Evidencia del entorno de simulación.**
 
-![Evidencia del entorno](../../../evidencias/semana_16/Screenshot%20from%202026-11-19%2016-20-09.png)
+![Evidencia del entorno](../../evidencias/semana_16/Screenshot%20from%202026-11-19%2016-20-09.png)
 
 **Figura 2. Evidencia complementaria del escenario.**
 
-![Evidencia complementaria](../../../evidencias/semana_16/Screenshot%20from%202026-11-19%2016-29-18.png)
+![Evidencia complementaria](../../evidencias/semana_16/Screenshot%20from%202026-11-19%2016-29-18.png)
 
 **Figura 3. Evidencia complementaria de las pruebas.**
 
-![Evidencia de pruebas](../../../evidencias/semana_16/Screenshot%20from%202026-11-19%2016-41-19.png)
+![Evidencia de pruebas](../../evidencias/semana_16/Screenshot%20from%202026-11-19%2016-41-19.png)
+
+**Figura 4. Modelo Unitree G1 EDU en el corredor.**
+
+![Robot en corredor](../../evidencias/semana_16/01_robot_corredor.png)
+
+**Figura 5. Prueba de colisión con la pared.**
+
+![Prueba de colisión](../../evidencias/semana_16/02_robot_colision_pared.png)
+
+**Figura 6. Prueba de odometría.**
+
+![Prueba de odometría](../../evidencias/semana_16/03_prueba_odometria.png)
 
 ### 9.2. Pruebas principales
 
