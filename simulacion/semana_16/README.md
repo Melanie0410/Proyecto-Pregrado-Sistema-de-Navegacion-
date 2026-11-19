@@ -100,27 +100,15 @@ Quedan pendientes las siguientes actividades:
 
 A continuación, se presentan las capturas correspondientes al escenario desarrollado y a las pruebas realizadas durante la semana 16.
 
-**Figura 1. Evidencia general del entorno de simulación.**
-
-![Entorno de simulación](../../evidencias/semana_16/Screenshot%20from%202026-11-19%2016-20-09.png)
-
-**Figura 2. Evidencia complementaria del escenario.**
-
-![Escenario de simulación](../../evidencias/semana_16/Screenshot%20from%202026-11-19%2016-29-18.png)
-
-**Figura 3. Evidencia complementaria de las pruebas.**
-
-![Pruebas de simulación](../../evidencias/semana_16/Screenshot%20from%202026-11-19%2016-41-19.png)
-
-**Figura 4. Modelo Unitree G1 EDU en el corredor.**
+**Figura 1. Modelo Unitree G1 EDU en el corredor.**
 
 ![Robot en corredor](../../evidencias/semana_16/01_robot_corredor.png)
 
-**Figura 5. Prueba de colisión con la pared.**
+**Figura 2. Prueba de colisión con la pared.**
 
 ![Prueba de colisión](../../evidencias/semana_16/02_robot_colision_pared.png)
 
-**Figura 6. Prueba de odometría.**
+**Figura 3. Prueba de odometría.**
 
 ![Prueba de odometría](../../evidencias/semana_16/03_prueba_odometria.png)
 
