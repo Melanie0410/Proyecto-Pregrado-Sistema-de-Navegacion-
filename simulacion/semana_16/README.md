@@ -188,43 +188,18 @@ A continuación, se presentan las evidencias gráficas correspondientes a las pr
 
 ### 9.1. Evidencias del entorno y las pruebas
 
-**Figura 1. Evidencia del entorno de simulación.**
-
-![Evidencia del entorno](../../evidencias/semana_16/Screenshot%20from%202026-11-19%2016-20-09.png)
-
-**Figura 2. Evidencia complementaria del escenario.**
-
-![Evidencia complementaria](../../evidencias/semana_16/Screenshot%20from%202026-11-19%2016-29-18.png)
-
-**Figura 3. Evidencia complementaria de las pruebas.**
-
-![Evidencia de pruebas](../../evidencias/semana_16/Screenshot%20from%202026-11-19%2016-41-19.png)
-
-**Figura 4. Modelo Unitree G1 EDU en el corredor.**
-
-![Robot en corredor](../../evidencias/semana_16/01_robot_corredor.png)
-
-**Figura 5. Prueba de colisión con la pared.**
-
-![Prueba de colisión](../../evidencias/semana_16/02_robot_colision_pared.png)
-
-**Figura 6. Prueba de odometría.**
-
-![Prueba de odometría](../../evidencias/semana_16/03_prueba_odometria.png)
-
-### 9.2. Pruebas principales
-
-**Figura 4. Modelo Unitree G1 EDU en el corredor.**
+**Figura 1. Modelo Unitree G1 EDU en el corredor.**
 
 ![Robot en corredor](../../../evidencias/semana_16/01_robot_corredor.png)
 
-**Figura 5. Verificación de colisiones entre el robot y las paredes.**
+**Figura 2. Verificación de colisiones entre el robot y las paredes.**
 
 ![Prueba de colisiones](../../../evidencias/semana_16/02_robot_colision_pared.png)
 
-**Figura 6. Verificación de la publicación de odometría.**
+**Figura 3. Verificación de la publicación de odometría.**
 
-![Prueba de odometría](../../../evidencias/semana_16/03_prueba_odometria.png)
+![Prueba de odometría](../../../evidencias/semana_16/03_prueba_odometria.png)**Figura 4. Modelo Unitree G1 EDU en el corredor.**
+
 ## 10. Conclusión
 
 Durante la semana 16 se consolidó un escenario unificado de simulación del bloque Calatayud con el modelo del Unitree G1 EDU. Se realizaron ajustes geométricos y pruebas preliminares que permitieron verificar la generación del mundo, el desplazamiento del modelo, el comportamiento de colisión con las paredes y la publicación estable de odometría a 50 Hz.
